@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useCallback } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { TextPlugin } from 'gsap/TextPlugin'
+import Image from 'next/image'
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin)
 
@@ -241,9 +242,15 @@ export default function HeroSection() {
     switch (visual) {
       case 'floating-equipment':
         return (
-          <div className="scene-visual relative w-80 h-80 mx-auto mb-8">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl shadow-2xl transform rotate-3 animate-float">
+          <div className="scene-visual relative w-full h-96 mx-auto mb-8">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl animate-float">
               <div className="absolute inset-4 bg-navy-900 rounded-xl">
+                <Image
+                  src="/images/SSAC_Logo_Large_transparent.png"
+                  alt="SSAC LOGO"
+                  fill
+                  className="object-contain"
+                />
                 <div className="absolute top-4 left-4 w-6 h-6 bg-electric-500 rounded-full animate-electric-pulse"></div>
                 <div className="absolute top-4 right-4 w-4 h-4 bg-success-500 rounded-full"></div>
                 <div className="absolute bottom-4 left-4 right-4 h-6 bg-gradient-to-r from-electric-500 to-success-500 rounded opacity-70"></div>
@@ -342,9 +349,11 @@ export default function HeroSection() {
           ref={midgroundLayerRef}
           className="parallax-layer absolute inset-0 opacity-30"
         >
+          
+          {/* nice effects but i might delete them as they appear on top of the logo image 
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 border border-electric-500/20 rounded-2xl"></div>
           <div className="absolute top-1/3 right-1/4 w-32 h-32 border border-success-500/20 rounded-full"></div>
-          <div className="absolute bottom-1/3 left-1/4 w-24 h-24 border border-accent-500/20 rounded-lg"></div>
+          <div className="absolute bottom-1/3 left-1/4 w-24 h-24 border border-accent-500/20 rounded-lg"></div>*/}
         </div>
 
         {/* Foreground Content Layer */}

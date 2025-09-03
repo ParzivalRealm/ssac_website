@@ -246,7 +246,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 from-primary-500 to-secondary-500 rounded-2xl animate-float">
               <div className="absolute inset-4 rounded-xl">
                 <Image
-                  src="./public/images/SSAC_Logo_Large_transparent.png"
+                  src="./images/SSAC_Logo_Large_transparent.png"
                   alt="ssac logo"
                   fill
                   className="object-contain"

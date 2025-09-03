@@ -247,7 +247,7 @@ export default function HeroSection() {
               <div className="absolute inset-4 rounded-xl">
                 <Image
                   src="public/images/SSAC_Logo_Large_transparent.png"
-                  alt="SSAC LOGO"
+                  alt="ssac logo"
                   fill
                   className="object-contain"
                 />

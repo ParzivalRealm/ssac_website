@@ -144,7 +144,7 @@ function ServiceHero() {
             <div className="absolute inset-0 rounded-2xl ">
               <div className="absolute inset-4 rounded-xl">
                 <Image
-                  src="../images/SSAC_Logo_Large_transparent.png"
+                  src="/images/SSAC_Logo_Large_transparent.png"
                   alt="SSAC Custom Automation Equipment"
                   fill
                   className="object-contain"
@@ -323,7 +323,7 @@ function TechnicalProcess() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="services-grid grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, index) => (
             <div key={index} className="animate-on-scroll service-card">
               <div className="bg-white p-8 rounded-xl enterprise-shadow hover:shadow-xl transition-all duration-300 hover:scale-105 h-full">

@@ -1,0 +1,727 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<panel version="14">
+ <properties>
+  <prop name="Name">
+   <prop name="en_US.utf8"></prop>
+  </prop>
+  <prop name="Size">231 153</prop>
+  <prop name="BackColor">_3DFace</prop>
+  <prop name="RefPoint">98 58</prop>
+  <prop name="InitAndTermRef">True</prop>
+  <prop name="SendClick">False</prop>
+  <prop name="RefFileName"></prop>
+  <prop name="DPI">96</prop>
+  <prop name="PDPI">96</prop>
+  <prop name="layoutType">None</prop>
+ </properties>
+ <events>
+  <script isEscaped="1" name="ScopeLib"><![CDATA[enum eLinePosition
+{
+  none   = 0,
+  up     = 1,
+  down   = 2,
+  left   = 3,
+  right  = 4,
+  downRight = 5
+};
+
+#property string borderStyle
+#property eLinePosition linePosition
+#property string lineStyle
+#property int lineLength
+#property color lineColor
+#property bool safety
+
+string sBorderStyle = &quot;[none,oneColor,JoinBevel,CapProjecting,1]&quot;;
+eLinePosition eLinePos = eLinePosition::down;
+string sLineStyle = &quot;[solid,oneColor,JoinBevel,CapProjecting,1]&quot;;
+int iLineLength = 51;
+string sLineColor = &quot;STD_grey_dark&quot;;
+bool bSafety;
+
+public void setSafety(bool bNewValue){
+  bSafety = bNewValue;
+}
+
+public bool getSafety(){
+  DebugN(&quot;safety:&quot;, bSafety);
+  return (bSafety);
+}
+
+public string getBorderStyle()
+{
+  return sBorderStyle;
+}
+
+public void setBorderStyle(string sNewBorderStyle)
+{
+  sBorderStyle = sNewBorderStyle;
+
+  setValue(&quot;body&quot;, &quot;border&quot;, sBorderStyle);
+}
+
+public eLinePosition getLinePosition()
+{
+  return eLinePos;
+}
+
+public void setLinePosition(eLinePosition newLinePos)
+{
+  eLinePos = newLinePos;
+
+  if (eLinePos == eLinePosition::none)
+  {
+    setValue(&quot;q1&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q2&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q3&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q4&quot;, &quot;visible&quot;, FALSE);
+  }
+  else if (eLinePos == eLinePosition::left)
+  {
+    setValue(&quot;q1&quot;, &quot;visible&quot;, TRUE);
+    setValue(&quot;q2&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q3&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q4&quot;, &quot;visible&quot;, FALSE);
+  }
+  else if (eLinePos == eLinePosition::up)
+  {
+    setValue(&quot;q1&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q2&quot;, &quot;visible&quot;, TRUE);
+    setValue(&quot;q3&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q4&quot;, &quot;visible&quot;, FALSE);
+  }
+  else if (eLinePos == eLinePosition::right)
+  {
+    setValue(&quot;q1&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q2&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q3&quot;, &quot;visible&quot;, TRUE);
+    setValue(&quot;q4&quot;, &quot;visible&quot;, FALSE);
+  }
+  else if (eLinePos == eLinePosition::down)
+  {
+    setValue(&quot;q1&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q2&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q3&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q4&quot;, &quot;visible&quot;, TRUE);
+  }
+   else if (eLinePos == eLinePosition::downRight)
+  {
+    setValue(&quot;q1&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q2&quot;, &quot;visible&quot;, FALSE);
+    setValue(&quot;q3&quot;, &quot;visible&quot;, TRUE);
+    setValue(&quot;q4&quot;, &quot;visible&quot;, TRUE);
+  }
+}
+
+public string getLineStyle()
+{
+  return sLineStyle;
+}
+
+public void setLineStyle(string sNewLineStyle)
+{
+  sLineStyle = sNewLineStyle;
+
+  setValue(&quot;q1&quot;, &quot;border&quot;, sLineStyle);
+  setValue(&quot;q2&quot;, &quot;border&quot;, sLineStyle);
+  setValue(&quot;q3&quot;, &quot;border&quot;, sLineStyle);
+  setValue(&quot;q4&quot;, &quot;border&quot;, sLineStyle);
+}
+ public int getLineLength()
+ {
+   return (iLineLength);
+ }
+
+ public void setLineLength(int NewValue)
+ {
+   iLineLength = NewValue;
+   q1.size(iLineLength, 1); // left
+   q2.size(1, iLineLength); // top
+   q3.size(iLineLength, 1); // right
+   q4.size(1, iLineLength); // bottom
+ }
+
+ public string getLineColor()
+ {
+   return (sLineColor);
+ }
+
+ public void setLineColor(string NewValue)
+ {
+   sLineColor = NewValue;
+   q1.foreCol = sLineColor;
+   q2.foreCol = sLineColor;
+   q3.foreCol = sLineColor;
+   q4.foreCol = sLineColor;
+ }]]></script>
+  <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  setBorderStyle(sBorderStyle);
+  setLineStyle(sLineStyle);
+  setLinePosition(eLinePos);
+  setLineLength(iLineLength);
+  setLineColor(sLineColor);
+}]]></script>
+ </events>
+ <shapes>
+  <shape Name="q2" layerId="0" shapeType="LINE">
+   <properties>
+    <prop name="serialId">16</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">110 60</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">False</prop>
+    <prop name="ForeColor">grey</prop>
+    <prop name="BackColor">{255,255,255}</prop>
+    <prop name="TabOrder">15</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignCenter</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,2]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="Start">110 65</prop>
+    <prop name="End">110 15</prop>
+   </properties>
+  </shape>
+  <shape Name="q3" layerId="0" shapeType="LINE">
+   <properties>
+    <prop name="serialId">14</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">170 75.25</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">False</prop>
+    <prop name="ForeColor">grey</prop>
+    <prop name="BackColor">{255,255,255}</prop>
+    <prop name="TabOrder">13</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignCenter</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,2]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="Start">170 75</prop>
+    <prop name="End">220 75</prop>
+   </properties>
+  </shape>
+  <shape Name="q4" layerId="0" shapeType="LINE">
+   <properties>
+    <prop name="serialId">15</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">110 100</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">False</prop>
+    <prop name="ForeColor">grey</prop>
+    <prop name="BackColor">{255,255,255}</prop>
+    <prop name="TabOrder">14</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignCenter</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,2]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="Start">110 92.5531914893615</prop>
+    <prop name="End">110 142.5540225982665</prop>
+   </properties>
+  </shape>
+  <shape Name="q1" layerId="0" shapeType="LINE">
+   <properties>
+    <prop name="serialId">8</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">60 75</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">False</prop>
+    <prop name="ForeColor">grey</prop>
+    <prop name="BackColor">{255,255,255}</prop>
+    <prop name="TabOrder">7</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignCenter</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">True</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,2]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="Start">60 75</prop>
+    <prop name="End">10 75</prop>
+   </properties>
+  </shape>
+  <shape Name="body3" layerId="1" shapeType="RECTANGLE">
+   <properties>
+    <prop name="serialId">28</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">8 8.000000000000011</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">False</prop>
+    <prop name="ForeColor">{0,0,0}</prop>
+    <prop name="BackColor">_3DFace</prop>
+    <prop name="TabOrder">26</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignCenter</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[solid]</prop>
+    <prop name="Geometry">2.1 0 0 0.6399999999999999 53.20000000000001 65.88</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Location">8 8.000000000000011</prop>
+    <prop name="Size">51 51</prop>
+    <prop name="CornerRadius">0</prop>
+    <prop name="Transformable">True</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+/*  if(dpExists($DP))
+  {
+    if(dpTypeName($DP) == &quot;SSAC_2oo3&quot;)
+    {
+      setValue(&quot;&quot;, &quot;visible&quot;, TRUE);
+      }
+    else
+    {
+      setValue(&quot;&quot;, &quot;visible&quot;, FALSE);
+      }
+  }*/
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="body2" layerId="2" shapeType="RECTANGLE">
+   <properties>
+    <prop name="serialId">27</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">8 8.000000000000011</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">False</prop>
+    <prop name="ForeColor">{0,0,0}</prop>
+    <prop name="BackColor">_3DFace</prop>
+    <prop name="TabOrder">25</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignCenter</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[solid]</prop>
+    <prop name="Geometry">2.1 0 0 0.6399999999999999 48.20000000000001 60.88</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Location">8 8.000000000000011</prop>
+    <prop name="Size">51 51</prop>
+    <prop name="CornerRadius">0</prop>
+    <prop name="Transformable">True</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+/*  if(dpExists($DP))
+  {
+    if(dpTypeName($DP)==&quot;SSAC_2oo3&quot;)
+      setValue(&quot;&quot;,&quot;visible&quot;,TRUE);
+    else
+      setValue(&quot;&quot;,&quot;visible&quot;,FALSE);
+  }*/
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="body" layerId="3" shapeType="RECTANGLE">
+   <properties>
+    <prop name="serialId">19</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">8 8.000000000000011</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">{0,0,0}</prop>
+    <prop name="BackColor">_3DFace</prop>
+    <prop name="TabOrder">18</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignCenter</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[solid]</prop>
+    <prop name="Geometry">2.1 0 0 0.6799999999999999 43.46250000000005 53.825625</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Location">8 8.000000000000011</prop>
+    <prop name="Size">51 51</prop>
+    <prop name="CornerRadius">0</prop>
+    <prop name="Transformable">True</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[#uses &quot;ssacAnalogObject.ctl&quot;
+
+main()
+{
+//  ssacAlertIn2($DP,FALSE);
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT3" layerId="4" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">31</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">150 80</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">False</prop>
+    <prop name="ForeColor">Black</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">28</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Location">150 80</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">MS Shell Dlg 2,-1,11,5,400,0,0,0,0,0,0,0,0,0,0,1</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">3x</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">True</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  if(dpExists($DP))
+  {
+    if(dpTypeName($DP) == &quot;SSAC_2oo3&quot;)
+    {
+      setValue(&quot;&quot;, &quot;visible&quot;, TRUE);
+    }
+    else
+    {
+      setValue(&quot;&quot;, &quot;visible&quot;, FALSE);
+    }
+  }
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT16" layerId="4" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">34</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">73 34.8</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">Black</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">29</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Geometry">2.23997847795599 0 0 1 -39.22455262816095 43.44999999999999</prop>
+    <prop name="Location">73 34.8</prop>
+    <prop name="Size">18 11</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">MS Shell Dlg 2,-1,9,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">unit</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">False</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignLeft]</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  if(dpExists($DP))
+  {
+    string unit;
+    unit = dpGetUnit($DP+ &quot;.State.Value&quot;);
+    setValue(&quot;&quot;, &quot;text&quot;, unit);
+  }
+  else
+  {
+    setValue(&quot;&quot;, &quot;backCol&quot;, &quot;STD_dp_not_existing&quot;);
+  }
+}]]></script>
+   </events>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT2" layerId="4" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">25</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">98.49999999999994 62</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">ctrlPV</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">23</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Geometry">1.620160138501829 0 0 1 -38.10923838969039 13.24999999999999</prop>
+    <prop name="Location">62 62</prop>
+    <prop name="Size">37 16</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">MS Shell Dlg 2,-1,13,5,700,0,0,0,0,0,0,0,0,0,0,1,Bold</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">Value</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">False</prop>
+    <prop name="Transformable">False</prop>
+    <prop name="TextFormat">[0s,,,AlignRight]</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[#uses &quot;ssacCommon&quot;
+
+main()
+{
+  if(dpExists($DP))
+  {
+    string dp, dpType = dpTypeName($DP);
+
+    switch (dpType)
+    {
+      case &quot;SSAC_ANALOG&quot;:
+        dp = $DP + &quot;.State.Value&quot;;
+        break;
+      case &quot;SSAC_TOTALIZER&quot;:
+        dp = $DP + &quot;.State.Total&quot;;
+        break;
+    }
+
+    ssacMeterIn(dp, FALSE);
+  }
+  else
+  {
+    setMultiValue(&quot;&quot;, &quot;text&quot;, &quot;UNKNOWN&quot;,
+                  &quot;&quot;, &quot;foreCol&quot;, &quot;STD_dp_not_existing&quot;);
+  }
+}
+]]></script>
+   </events>
+  </shape>
+  <shape Name="PRIMITIVE_TEXT1" layerId="4" shapeType="PRIMITIVE_TEXT">
+   <properties>
+    <prop name="serialId">17</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">88.07500000000014 61.25</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">Black</prop>
+    <prop name="BackColor">_Window</prop>
+    <prop name="TabOrder">16</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="sizePolicy">
+     <sizePolicy horizontal="Fixed" vertical="Fixed"/>
+    </prop>
+    <prop name="layoutAlignment">AlignCenter</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[outline]</prop>
+    <prop name="Location">62.26250000000005 61.25</prop>
+    <prop name="Size">102 14</prop>
+    <prop name="Font">
+     <prop name="en_US.utf8">MS Shell Dlg 2,-1,12,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular</prop>
+    </prop>
+    <prop name="Text">
+     <prop name="en_US.utf8">xxx-xxxxx</prop>
+    </prop>
+    <prop name="Distance">2</prop>
+    <prop name="BorderOffset">2</prop>
+    <prop name="Bordered">False</prop>
+    <prop name="Fit">False</prop>
+    <prop name="Transformable">True</prop>
+    <prop name="TextFormat">[0s,,,AlignHCenter]</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Initialize"><![CDATA[main()
+{
+  if(dpExists($DP))
+  {
+    this.text = dpSubStr($DP, DPSUB_DP);
+  }
+  else
+  {
+    this.text = $DP;
+    setValue(&quot;body&quot;, &quot;backCol&quot;, &quot;STD_dp_not_existing&quot;);
+  }
+}]]></script>
+   </events>
+  </shape>
+  <reference Name="PANEL_REF1" parentSerial="-1" referenceId="0">
+   <properties>
+    <prop name="FileName">objects/SSAC_OBJECTS/DeviceAlert.xml</prop>
+    <prop name="Location">130 40</prop>
+    <prop name="Geometry">1 0 0 1 27 20</prop>
+    <prop name="TabOrder">27</prop>
+    <prop name="dollarParameters">
+     <prop name="dollarParameter">
+      <prop name="Dollar">$DP</prop>
+      <prop name="Value">$DP</prop>
+     </prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+   </properties>
+  </reference>
+  <shape Name="clickFrame" layerId="6" shapeType="RECTANGLE">
+   <properties>
+    <prop name="serialId">13</prop>
+    <prop name="Type"></prop>
+    <prop name="RefPoint">19.02774170366192 9.178882716023729</prop>
+    <prop name="Enable">True</prop>
+    <prop name="Visible">True</prop>
+    <prop name="ForeColor">_Transparent</prop>
+    <prop name="BackColor">_Transparent</prop>
+    <prop name="TabOrder">12</prop>
+    <prop name="ToolTipText">
+     <prop name="en_US.utf8"></prop>
+    </prop>
+    <prop name="layoutAlignment">AlignCenter</prop>
+    <prop name="snapMode">Point</prop>
+    <prop name="DashBackColor">_Transparent</prop>
+    <prop name="AntiAliased">False</prop>
+    <prop name="LineType">[solid,oneColor,JoinBevel,CapProjecting,1]</prop>
+    <prop name="BorderZoomable">False</prop>
+    <prop name="BorderScalable">False</prop>
+    <prop name="FillType">[solid]</prop>
+    <prop name="Geometry">2.32128792963716 0 0 0.6015372087097619 15.83113285503598 54.4785605119288</prop>
+    <prop name="BorderStyle">Normal</prop>
+    <prop name="Location">19.02774170366192 9.178882716023729</prop>
+    <prop name="Size">50.97225829633808 70.82111728397626</prop>
+    <prop name="CornerRadius">0</prop>
+    <prop name="Transformable">True</prop>
+   </properties>
+   <events>
+    <script isEscaped="1" name="Clicked"><![CDATA[#uses &quot;ssacCommon&quot;
+
+main()
+{
+  hook_openFaceplate($DP,&quot;&quot;,true,getSafety());
+}]]></script>
+    <script isEscaped="1" name="RightMousePressed"><![CDATA[main(mapping event)
+{
+  hook_openFaceplate($DP,&quot;TREND&quot;);
+}]]></script>
+    <script isEscaped="1" name="Acknowledge"><![CDATA[// SimpleCtrlScriptStart {valid}
+main(int iType)
+{
+  dyn_errClass err;
+
+  int          i, iReturnValue = 1, iDpCount = 7;
+  dyn_int      diType = makeDynInt();
+  dyn_string   dsDps;
+
+  dsDps[1] = $DP+&quot;.Alarm.HHH&quot; + &quot;:_alert_hdl.._ack&quot;;
+  dsDps[2] = $DP+&quot;.Alarm.HH&quot; + &quot;:_alert_hdl.._ack&quot;;
+  dsDps[3] = $DP+&quot;.Alarm.H&quot; + &quot;:_alert_hdl.._ack&quot;;
+  dsDps[4] = $DP+&quot;.Alarm.LLL&quot; + &quot;:_alert_hdl.._ack&quot;;
+  dsDps[5] = $DP+&quot;.Alarm.LL&quot; + &quot;:_alert_hdl.._ack&quot;;
+  dsDps[6] = $DP+&quot;.Alarm.L&quot; + &quot;:_alert_hdl.._ack&quot;;
+  dsDps[7] = $DP+&quot;.Alarm.Fault&quot; + &quot;:_alert_hdl.._ack&quot;;
+
+  if ( isFunctionDefined(&quot;isAckable&quot;) )
+  {
+    isAckable( iType, dsDps, iReturnValue );
+    if ( iReturnValue == 0 || dynlen (dsDps ) &lt; 1 ) return;
+  }
+
+  for ( i = 1; i &lt;= dynlen(dsDps); i++ )
+    diType[i] = iType;
+
+  dpSetWait( dsDps, diType );
+
+  err = getLastError();
+  if ( dynlen(err) &gt; 0 )
+    DebugN(err);
+}
+// SimpleCtrlScript {EP_confirm}
+// dpCount {7}
+// dp1 {$DP+&quot;.Alarm.HHH&quot;}
+// dp2 {$DP+&quot;.Alarm.HH&quot;}
+// dp3 {$DP+&quot;.Alarm.H&quot;}
+// dp4 {$DP+&quot;.Alarm.LLL&quot;}
+// dp5 {$DP+&quot;.Alarm.LL&quot;}
+// dp6 {$DP+&quot;.Alarm.L&quot;}
+// dp7 {$DP+&quot;.Alarm.Fault&quot;}
+// SimpleCtrlScriptEnd {EP_confirm}
+]]></script>
+   </events>
+  </shape>
+  <reference Name="PANEL_REF2" parentSerial="-1" referenceId="1">
+   <properties>
+    <prop name="FileName">objects/SSAC_OBJECTS/SSAC_Force_Indicator.pnl</prop>
+    <prop name="Location">180 223</prop>
+    <prop name="Geometry">0.8936170212765958 0 0 0.9 53.14893617021276 5.299999999999971</prop>
+    <prop name="TabOrder">30</prop>
+    <prop name="dollarParameters">
+     <prop name="dollarParameter">
+      <prop name="Dollar">$DP</prop>
+      <prop name="Value">$DP</prop>
+     </prop>
+    </prop>
+    <prop name="layoutAlignment">AlignNone</prop>
+   </properties>
+  </reference>
+ </shapes>
+</panel>

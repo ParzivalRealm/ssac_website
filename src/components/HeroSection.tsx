@@ -32,8 +32,8 @@ const scenes: Scene[] = [
     id: 'expertise',
     progress: [0.2, 0.4],
     content: {
-      headline: 'Custom Control Systems',
-      subheadline: 'Advanced SCADA Development',
+      headline: 'Custom Control and Panel Systems',
+      subheadline: 'Advanced SCADA, PLC and electrical Development',
       visual: 'technical-diagrams'
     }
   },
@@ -243,37 +243,81 @@ export default function HeroSection() {
       case 'floating-equipment':
         return (
           <div className="scene-visual relative w-full h-96 mx-auto mb-8">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl animate-float">
-              <div className="absolute inset-4 bg-navy-900 rounded-xl">
+            <div className="absolute inset-0 from-primary-500 to-secondary-500 rounded-2xl animate-float">
+              <div className="absolute inset-4 rounded-xl">
                 <Image
                   src="/images/SSAC_Logo_Large_transparent.png"
                   alt="SSAC LOGO"
                   fill
                   className="object-contain"
                 />
-                <div className="absolute top-4 left-4 w-6 h-6 bg-electric-500 rounded-full animate-electric-pulse"></div>
-                <div className="absolute top-4 right-4 w-4 h-4 bg-success-500 rounded-full"></div>
-                <div className="absolute bottom-4 left-4 right-4 h-6 bg-gradient-to-r from-electric-500 to-success-500 rounded opacity-70"></div>
+                <div className="absolute bottom-4 left-4 right-4 h-6 bg-gradient-to-br from-logo-500 to-secondary-500 rounded opacity-70"></div>
               </div>
             </div>
           </div>
         )
       
-      case 'technical-diagrams':
-        return (
-          <div className="scene-visual relative w-80 h-80 mx-auto mb-8">
-            <div className="absolute inset-0 bg-gray-900 rounded-2xl shadow-2xl p-6">
-              <div className="grid grid-cols-3 gap-4 h-full">
-                {[...Array(9)].map((_, i) => (
-                  <div key={i} className="bg-electric-500 bg-opacity-20 rounded-lg flex items-center justify-center">
-                    <div className="w-8 h-8 border-2 border-electric-500 rounded-full animate-pulse"></div>
-                  </div>
-                ))}
-              </div>
+case 'technical-diagrams':
+  return (
+    <div className="scene-visual relative w-full h-80 mx-auto mb-8">
+      <div className="absolute inset-0 rounded-2xl p-8">
+        <div className="flex flex-col justify-center h-full gap-12">
+          {/* Top row - 3 logos */}
+          <div className="flex justify-center gap-16">
+            <div className="flex items-center justify-center w-32 h-32 group">
+              <Image
+                src="/images/siemens_logo.png"
+                alt="Siemens Logo" 
+                width={240}
+                height={240}
+                className="object-contain group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <div className="flex items-center justify-center w-32 h-32 group">
+              <Image
+                src="/images/tia-portal_logo.png"
+                alt="TIA Portal Logo"
+                width={240}
+                height={240}
+                className="object-contain group-hover:scale-110 transition-transform duration-300"
+              />
+            </div>
+            <div className="flex items-center justify-center w-32 h-32 group">
+              <Image
+                src="/images/wincc-oa_logo.jpg"
+                alt="WinCC OA Logo"
+                width={240}
+                height={240}
+                className="object-contain group-hover:scale-110 transition-transform duration-300"
+              />
             </div>
           </div>
-        )
-      
+          
+          {/* Bottom row - 2 logos */}
+          <div className="flex justify-center gap-16">
+            <div className="flex items-center justify-center w-32 h-32 group">
+              <Image
+                src="/images/AllenBradley_logo.svg"
+                alt="Allen Bradley Logo"
+                width={240}
+                height={240}
+                className="object-contain group-hover:scale-110 transition-transform duration-300"
+              />          
+            </div>
+            <div className="flex items-center justify-center w-32 h-32 group">
+              <Image
+                src="/images/Eplan_logo.svg.png"
+                alt="EPLAN Logo"
+                width={240}
+                height={240}
+                className="object-contain group-hover:scale-110 transition-transform duration-300"
+              />          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )      
       case 'stats-showcase':
         return (
           <div className="scene-visual grid grid-cols-2 gap-8 max-w-md mx-auto mb-8">
@@ -307,7 +351,7 @@ export default function HeroSection() {
       case 'call-to-action':
         return (
           <div className="scene-visual flex flex-col sm:flex-row gap-4 justify-center mb-8">
-            <button className="group relative px-8 py-4 bg-navy-900 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:bg-navy-800 hover:scale-105 enterprise-shadow">
+            <button className="group relative px-8 py-4 !bg-navy-900 text-white font-semibold rounded-lg overflow-hidden transition-all duration-300 hover:bg-navy-800 hover:scale-105 enterprise-shadow">
               <span className="relative z-10">Schedule Engineering Consultation</span>
               <div className="absolute inset-0 bg-gradient-to-r from-electric-500 to-success-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
             </button>

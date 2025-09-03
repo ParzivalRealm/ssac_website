@@ -144,7 +144,7 @@ function ServiceHero() {
             <div className="absolute inset-0 rounded-2xl ">
               <div className="absolute inset-4 rounded-xl">
                 <Image
-                  src="/images/SSAC_Logo_Large_transparent.png"
+                  src="/../images/SSAC_Logo_Large_transparent.png"
                   alt="SSAC Custom Automation Equipment"
                   fill
                   className="object-contain"

@@ -246,7 +246,7 @@ export default function HeroSection() {
             <div className="absolute inset-0 from-primary-500 to-secondary-500 rounded-2xl animate-float">
               <div className="absolute inset-4 rounded-xl">
                 <Image
-                  src="./images/SSAC_Logo_Large_transparent.png"
+                  src="../images/SSAC_Logo_Large_transparent.png"
                   alt="ssac logo"
                   fill
                   className="object-contain"
@@ -266,7 +266,7 @@ case 'technical-diagrams':
           <div className="flex justify-center gap-16">
             <div className="flex items-center justify-center w-32 h-32 group">
               <Image
-                src="/images/siemens_logo.png"
+                src="./images/siemens_logo.png"
                 alt="Siemens Logo" 
                 width={240}
                 height={240}
@@ -275,7 +275,7 @@ case 'technical-diagrams':
             </div>
             <div className="flex items-center justify-center w-32 h-32 group">
               <Image
-                src="/images/tia-portal_logo.png"
+                src="./images/tia-portal_logo.png"
                 alt="TIA Portal Logo"
                 width={240}
                 height={240}
@@ -284,7 +284,7 @@ case 'technical-diagrams':
             </div>
             <div className="flex items-center justify-center w-32 h-32 group">
               <Image
-                src="/images/wincc-oa_logo.jpg"
+                src="./images/wincc-oa_logo.jpg"
                 alt="WinCC OA Logo"
                 width={240}
                 height={240}
@@ -297,7 +297,7 @@ case 'technical-diagrams':
           <div className="flex justify-center gap-16">
             <div className="flex items-center justify-center w-32 h-32 group">
               <Image
-                src="/images/AllenBradley_logo.svg"
+                src="./images/AllenBradley_logo.svg"
                 alt="Allen Bradley Logo"
                 width={240}
                 height={240}
@@ -306,7 +306,7 @@ case 'technical-diagrams':
             </div>
             <div className="flex items-center justify-center w-32 h-32 group">
               <Image
-                src="/images/Eplan_logo.svg.png"
+                src="./images/Eplan_logo.svg.png"
                 alt="EPLAN Logo"
                 width={240}
                 height={240}
